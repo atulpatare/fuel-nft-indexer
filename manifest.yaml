@@ -1,0 +1,7 @@
+namespace: counter_indexer_one
+identifier: counter-indexer
+abi: ../fuel-nft-indexer/abi/nft-abi.json
+graphql_schema: ../fuel-nft-indexer/schema/schema.graphql
+start_block: 1
+module:
+  wasm: ../fuel-nft-indexer/counter_indexer.wasm

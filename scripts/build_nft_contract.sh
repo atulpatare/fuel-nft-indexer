@@ -1,0 +1,1 @@
+cd contracts && forc build &&  mkdir -p ../abi && cp out/debug/NFT-abi.json ../abi && cd ..

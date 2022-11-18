@@ -27,3 +27,9 @@ cargo build --release
 ```
 cargo run -bin fuel-indexer -- --manifest <path-to-manifest.yaml>
 ```
+
+- To run any of the scripts
+```
+# run from project root
+./scripts/<script_name>.sh <arg0> <arg1> ...
+```

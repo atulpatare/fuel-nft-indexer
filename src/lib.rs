@@ -5,7 +5,6 @@ use fuels_core::*;
 
 #[indexer(manifest = "../fuel-nft-indexer/manifest.yaml")]
 pub mod nft_indexer_module {
-    use super::*;
 
     pub fn handle_mint_event(event: MintEvent) {
         let MintEvent { owner, token_id_start, total_tokens } = event;

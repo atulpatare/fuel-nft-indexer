@@ -6,6 +6,9 @@ type QueryRoot {
     test: Test
 }
 
-type Test {
+type Mint {
     id: ID!
+    owner: Address!
+    amount: Int8!
+    token_id_start: Int8!
 }

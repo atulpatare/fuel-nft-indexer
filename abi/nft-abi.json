@@ -166,11 +166,6 @@
           "typeArguments": null
         },
         {
-          "name": "sender",
-          "type": 3,
-          "typeArguments": null
-        },
-        {
           "name": "to",
           "type": 3,
           "typeArguments": null
@@ -249,7 +244,7 @@
       "name": "mint",
       "output": {
         "name": "",
-        "type": 0,
+        "type": 8,
         "typeArguments": null
       }
     },
@@ -325,20 +320,12 @@
       "logId": 4,
       "loggedType": {
         "name": "",
-        "type": 8,
-        "typeArguments": []
-      }
-    },
-    {
-      "logId": 5,
-      "loggedType": {
-        "name": "",
         "type": 5,
         "typeArguments": []
       }
     },
     {
-      "logId": 6,
+      "logId": 5,
       "loggedType": {
         "name": "",
         "type": 9,

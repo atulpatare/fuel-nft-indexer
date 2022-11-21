@@ -22,4 +22,24 @@ pub mod nft_indexer_module {
             _ => {}
         };
     }
+
+    pub fn handle_transfer_event(event: TransferEvent) {
+        let TransferEvent { from, to, token_id } = event;
+
+        let from_address = match from {
+            Identity::Address(address) => address,
+            _ => panic!("done"),
+        };
+        let to_address = match to {
+            Identity::Address(address) => address,
+            _ => panic!("done"),
+        };
+
+        let transfer = Transfer {
+            id: token_id,
+            from_user: from_address,
+            to_user: to_address,
+        };
+        transfer.save();
+    }
 }

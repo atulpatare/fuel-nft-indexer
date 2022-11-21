@@ -3,6 +3,8 @@ schema {
 }
 
 type QueryRoot {
+    mint: Mint
+    transfer: Transfer
     test: Test
 }
 
@@ -11,4 +13,14 @@ type Mint {
     owner: Address!
     amount: Int8!
     token_id_start: Int8!
+}
+
+type Transfer {
+    id: ID!
+    from_user: Address!
+    to_user: Address!
+}
+
+type Test {
+    id: ID!
 }

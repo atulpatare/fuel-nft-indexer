@@ -14,27 +14,31 @@
     },
     {
       "typeId": 2,
-      "type": "enum Identity",
-      "components": [
-        {
-          "name": "Address",
-          "type": 5,
-          "typeArguments": null
-        },
-        {
-          "name": "ContractId",
-          "type": 6,
-          "typeArguments": null
-        }
-      ],
+      "type": "bool",
+      "components": null,
       "typeParameters": null
     },
     {
       "typeId": 3,
-      "type": "enum InputError",
+      "type": "enum AccessError",
       "components": [
         {
-          "name": "AddressConnotBeZero",
+          "name": "SenderCannotSetAccessControl",
+          "type": 0,
+          "typeArguments": null
+        },
+        {
+          "name": "SenderNotAdmin",
+          "type": 0,
+          "typeArguments": null
+        },
+        {
+          "name": "SenderNotOwner",
+          "type": 0,
+          "typeArguments": null
+        },
+        {
+          "name": "SenderNotOwnerOrApproved",
           "type": 0,
           "typeArguments": null
         }
@@ -43,12 +47,77 @@
     },
     {
       "typeId": 4,
-      "type": "str[3]",
-      "components": null,
+      "type": "enum Identity",
+      "components": [
+        {
+          "name": "Address",
+          "type": 7,
+          "typeArguments": null
+        },
+        {
+          "name": "ContractId",
+          "type": 8,
+          "typeArguments": null
+        }
+      ],
       "typeParameters": null
     },
     {
       "typeId": 5,
+      "type": "enum InitError",
+      "components": [
+        {
+          "name": "AdminIsNone",
+          "type": 0,
+          "typeArguments": null
+        },
+        {
+          "name": "CannotReinitialize",
+          "type": 0,
+          "typeArguments": null
+        }
+      ],
+      "typeParameters": null
+    },
+    {
+      "typeId": 6,
+      "type": "enum InputError",
+      "components": [
+        {
+          "name": "AdminDoesNotExist",
+          "type": 0,
+          "typeArguments": null
+        },
+        {
+          "name": "ApprovedDoesNotExist",
+          "type": 0,
+          "typeArguments": null
+        },
+        {
+          "name": "NotEnoughTokensToMint",
+          "type": 0,
+          "typeArguments": null
+        },
+        {
+          "name": "OwnerDoesNotExist",
+          "type": 0,
+          "typeArguments": null
+        },
+        {
+          "name": "TokenDoesNotExist",
+          "type": 0,
+          "typeArguments": null
+        },
+        {
+          "name": "TokenSupplyCannotBeZero",
+          "type": 0,
+          "typeArguments": null
+        }
+      ],
+      "typeParameters": null
+    },
+    {
+      "typeId": 7,
       "type": "struct Address",
       "components": [
         {
@@ -60,7 +129,7 @@
       "typeParameters": null
     },
     {
-      "typeId": 6,
+      "typeId": 8,
       "type": "struct ContractId",
       "components": [
         {
@@ -72,7 +141,56 @@
       "typeParameters": null
     },
     {
-      "typeId": 7,
+      "typeId": 9,
+      "type": "struct MintEvent",
+      "components": [
+        {
+          "name": "owner",
+          "type": 4,
+          "typeArguments": null
+        },
+        {
+          "name": "token_id_start",
+          "type": 11,
+          "typeArguments": null
+        },
+        {
+          "name": "total_tokens",
+          "type": 11,
+          "typeArguments": null
+        }
+      ],
+      "typeParameters": null
+    },
+    {
+      "typeId": 10,
+      "type": "struct TransferEvent",
+      "components": [
+        {
+          "name": "from",
+          "type": 4,
+          "typeArguments": null
+        },
+        {
+          "name": "sender",
+          "type": 4,
+          "typeArguments": null
+        },
+        {
+          "name": "to",
+          "type": 4,
+          "typeArguments": null
+        },
+        {
+          "name": "token_id",
+          "type": 11,
+          "typeArguments": null
+        }
+      ],
+      "typeParameters": null
+    },
+    {
+      "typeId": 11,
       "type": "u64",
       "components": null,
       "typeParameters": null
@@ -80,15 +198,44 @@
   ],
   "functions": [
     {
+      "inputs": [],
+      "name": "admin",
+      "output": {
+        "name": "",
+        "type": 4,
+        "typeArguments": null
+      }
+    },
+    {
       "inputs": [
         {
-          "name": "name_",
+          "name": "owner",
+          "type": 4,
+          "typeArguments": null
+        }
+      ],
+      "name": "balance_of",
+      "output": {
+        "name": "",
+        "type": 11,
+        "typeArguments": null
+      }
+    },
+    {
+      "inputs": [
+        {
+          "name": "access_control",
+          "type": 2,
+          "typeArguments": null
+        },
+        {
+          "name": "admin",
           "type": 4,
           "typeArguments": null
         },
         {
-          "name": "symbol_",
-          "type": 4,
+          "name": "max_supply",
+          "type": 11,
           "typeArguments": null
         }
       ],
@@ -101,19 +248,30 @@
     },
     {
       "inputs": [],
-      "name": "name",
+      "name": "max_supply",
       "output": {
         "name": "",
-        "type": 4,
+        "type": 11,
         "typeArguments": null
       }
     },
     {
-      "inputs": [],
-      "name": "symbol",
+      "inputs": [
+        {
+          "name": "amount",
+          "type": 11,
+          "typeArguments": null
+        },
+        {
+          "name": "to",
+          "type": 4,
+          "typeArguments": null
+        }
+      ],
+      "name": "mint",
       "output": {
         "name": "",
-        "type": 4,
+        "type": 0,
         "typeArguments": null
       }
     },
@@ -122,22 +280,32 @@
       "name": "total_supply",
       "output": {
         "name": "",
-        "type": 7,
+        "type": 11,
         "typeArguments": null
       }
     },
     {
       "inputs": [
         {
-          "name": "owner",
-          "type": 2,
+          "name": "from",
+          "type": 4,
+          "typeArguments": null
+        },
+        {
+          "name": "to",
+          "type": 4,
+          "typeArguments": null
+        },
+        {
+          "name": "token_id",
+          "type": 11,
           "typeArguments": null
         }
       ],
-      "name": "balance_of",
+      "name": "transfer_from",
       "output": {
         "name": "",
-        "type": 7,
+        "type": 0,
         "typeArguments": null
       }
     }
@@ -147,7 +315,71 @@
       "logId": 0,
       "loggedType": {
         "name": "",
+        "type": 6,
+        "typeArguments": []
+      }
+    },
+    {
+      "logId": 1,
+      "loggedType": {
+        "name": "",
+        "type": 5,
+        "typeArguments": []
+      }
+    },
+    {
+      "logId": 2,
+      "loggedType": {
+        "name": "",
+        "type": 6,
+        "typeArguments": []
+      }
+    },
+    {
+      "logId": 3,
+      "loggedType": {
+        "name": "",
+        "type": 5,
+        "typeArguments": []
+      }
+    },
+    {
+      "logId": 4,
+      "loggedType": {
+        "name": "",
+        "type": 6,
+        "typeArguments": []
+      }
+    },
+    {
+      "logId": 5,
+      "loggedType": {
+        "name": "",
         "type": 3,
+        "typeArguments": []
+      }
+    },
+    {
+      "logId": 6,
+      "loggedType": {
+        "name": "",
+        "type": 9,
+        "typeArguments": []
+      }
+    },
+    {
+      "logId": 7,
+      "loggedType": {
+        "name": "",
+        "type": 6,
+        "typeArguments": []
+      }
+    },
+    {
+      "logId": 8,
+      "loggedType": {
+        "name": "",
+        "type": 10,
         "typeArguments": []
       }
     }

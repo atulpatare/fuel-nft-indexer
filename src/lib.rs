@@ -5,11 +5,10 @@ use fuels_core::*;
 
 #[indexer(manifest = "../fuel-nft-indexer/manifest.yaml")]
 pub mod nft_indexer_module {
-
     pub fn handle_mint_event(event: MintEvent) {
         let MintEvent { owner, token_id_start, total_tokens } = event;
         match owner {
-            Identity::Address(address) => {
+            fuels_core::Identity::Address(address) => {
                 let mint = Mint {
                     id: token_id_start + total_tokens,
                     owner: address,
@@ -26,11 +25,11 @@ pub mod nft_indexer_module {
         let TransferEvent { from, to, token_id } = event;
 
         let from_address = match from {
-            Identity::Address(address) => address,
+            fuels_core::Identity::Address(address) => address,
             _ => panic!("done"),
         };
         let to_address = match to {
-            Identity::Address(address) => address,
+            fuels_core::Identity::Address(address) => address,
             _ => panic!("done"),
         };
 

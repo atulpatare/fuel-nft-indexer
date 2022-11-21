@@ -33,3 +33,8 @@ cargo run -bin fuel-indexer -- --manifest <path-to-manifest.yaml>
 # run from project root
 ./scripts/<script_name>.sh <arg0> <arg1> ...
 ```
+
+## Testing
+Testing with realtime data, use this NFT contract to interact and deploy. 
+
+[Repo](https://github.com/atulpatare/sway-nft)

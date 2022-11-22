@@ -10,13 +10,18 @@ type QueryRoot {
     transfer: Transfer
 }
 
+
+type Account {
+    id: ID!
+    address: Address!
+}
+
 type Collection {
     id: ID!
     contract: ContractId!
-    admin: Address!
+    admin: Account!
     total_supply: Int8!
     total_minted: Int8!
-    created: Timestamp!
 }
 
 type NFTToken {
@@ -24,25 +29,17 @@ type NFTToken {
     token_id: Int8!
     previous_owner: Address!
     current_owner: Address!
-    created: Timestamp!
-}
-
-type Account {
-    id: ID!
-    address: Address!
 }
 
 type Mint {
     id: ID!
     owner: Account!
     token: NFTToken!
-    created: Timestamp!
 }
 
 type Transfer {
     id: ID!
     token: NFTToken!
-    from_user: Account!
-    to_user: Account!
-    created: Timestamp!
+    from_user: Address!
+    to_user: Address!
 }

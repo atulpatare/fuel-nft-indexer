@@ -16,6 +16,7 @@ git clone https://github.com/FuelLabs/fuel-indexer
   dependencies [here](https://fuellabs.github.io/fuel-indexer/master/getting-started/application-dependencies.html#application-dependencies)
 
 ## Execution
+
 - Extra steps for Apple M1
 
 ```

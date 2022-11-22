@@ -1,7 +1,12 @@
 extern crate alloc;
 
 use fuel_indexer_macros::indexer;
+use fuel_indexer_plugin::types::*;
 use fuels_core::*;
+
+pub fn get_zero_address() -> Address {
+    Address::new([0u8; 32])
+}
 
 #[indexer(manifest = "../fuel-nft-indexer/manifest.yaml")]
 pub mod nft_indexer_module {
@@ -27,11 +32,11 @@ pub mod nft_indexer_module {
 
         let from_address = match from {
             fuels_core::Identity::Address(address) => address,
-            _ => panic!("done"),
+            fuels_core::Identity::ContractId(_) => get_zero_address(),
         };
         let to_address = match to {
             fuels_core::Identity::Address(address) => address,
-            _ => panic!("done"),
+            fuels_core::Identity::ContractId(_) => get_zero_address(),
         };
 
         let transfer = Transfer {

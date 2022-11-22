@@ -3,24 +3,46 @@ schema {
 }
 
 type QueryRoot {
+    collection: Collection
+    token: NFTToken
+    account: Account
     mint: Mint
     transfer: Transfer
-    test: Test
+}
+
+type Collection {
+    id: ID!
+    contract: ContractId!
+    admin: Address!
+    total_supply: Int8!
+    total_minted: Int8!
+    created: Timestamp!
+}
+
+type NFTToken {
+    id: ID!
+    token_id: Int8!
+    previous_owner: Address!
+    current_owner: Address!
+    created: Timestamp!
+}
+
+type Account {
+    id: ID!
+    address: Address!
 }
 
 type Mint {
     id: ID!
-    owner: Address!
-    amount: Int8!
-    token_id_start: Int8!
+    owner: Account!
+    token: NFTToken!
+    created: Timestamp!
 }
 
 type Transfer {
     id: ID!
-    from_user: Address!
-    to_user: Address!
-}
-
-type Test {
-    id: ID!
+    token: NFTToken!
+    from_user: Account!
+    to_user: Account!
+    created: Timestamp!
 }

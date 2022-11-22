@@ -29,6 +29,13 @@ pub fn get_i64_from_u64(val: u64) -> i64 {
     val.try_into().unwrap()
 }
 
+pub fn get_u64_from_string_vec(values: Vec<String>) -> u64 {
+    let result = values.join("_");
+    let mut buff = [0u8; 8];
+    buff.copy_from_slice(&result.as_bytes()[..8]);
+    u64::from_le_bytes(buff)
+}
+
 pub fn load_or_get_account(account: Address) -> Account {
     match Account::load(get_u64_from_address(account)) {
         Some(acc) => acc,
@@ -96,5 +103,48 @@ pub mod nft_indexer_module {
         collection.save();
         nft_token.save();
         mint_event.save();
+    }
+
+    pub fn handle_transfer_event(event: TransferEvent) {
+        let TransferEvent { from, to, token_id } = event;
+
+        let from_address = crate::get_address_from_identity(from);
+        let to_address = crate::get_address_from_identity(to);
+        crate::load_or_get_account(from_address);
+        crate::load_or_get_account(to_address);
+
+        let nft_token = match NFTToken::load(token_id) {
+            Some(mut token) => {
+                token.previous_owner = from_address;
+                token.current_owner = to_address;
+                token
+            },
+            None => {
+                NFTToken {
+                    id: token_id,
+                    token_id: crate::get_i64_from_u64(token_id),
+                    previous_owner: from_address,
+                    current_owner: to_address,
+                }
+            }
+        };
+
+        let transfer_id = crate::get_u64_from_string_vec(
+            vec![from_address.to_string(), to_address.to_string(), token_id.to_string()]
+        );
+        let transfer = match Transfer::load(transfer_id) {
+            Some(t) => t,
+            None => {
+                Transfer {
+                    id: transfer_id,
+                    token: nft_token.id,
+                    from_user: from_address,
+                    to_user: to_address,
+                }
+            }
+        };
+
+        nft_token.save();
+        transfer.save();
     }
 }

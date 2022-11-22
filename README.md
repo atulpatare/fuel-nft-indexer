@@ -16,6 +16,13 @@ git clone https://github.com/FuelLabs/fuel-indexer
   dependencies [here](https://fuellabs.github.io/fuel-indexer/master/getting-started/application-dependencies.html#application-dependencies)
 
 ## Execution
+- Extra steps for Apple M1
+
+```
+brew install llvm
+export AR=/opt/homebrew/opt/llvm/bin/llvm-ar
+export CC=/opt/homebrew/opt/llvm/bin/clang
+```
 
 - Build the indexer
 

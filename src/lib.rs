@@ -50,6 +50,7 @@ pub fn load_or_get_account(account: Address) -> Account {
     }
 }
 
+// noinspection RsUnresolvedReference
 #[indexer(manifest = "../fuel-nft-indexer/manifest.yaml")]
 pub mod nft_indexer_module {
 

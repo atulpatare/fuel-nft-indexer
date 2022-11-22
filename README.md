@@ -40,7 +40,11 @@ cargo build --release
 - Execute the indexer
 
 ```
-cargo run -bin fuel-indexer -- --manifest <path-to-manifest.yaml>
+# build the indexer
+cargo build --release
+
+# run the binary
+./target/release/fuel-indexer --manifest <path-to-manifest.yaml>
 ```
 
 - To run any of the scripts

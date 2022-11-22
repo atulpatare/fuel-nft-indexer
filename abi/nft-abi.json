@@ -144,12 +144,7 @@
           "typeArguments": null
         },
         {
-          "name": "token_id_start",
-          "type": 10,
-          "typeArguments": null
-        },
-        {
-          "name": "total_tokens",
+          "name": "token_id",
           "type": 10,
           "typeArguments": null
         }
@@ -230,11 +225,6 @@
     },
     {
       "inputs": [
-        {
-          "name": "amount",
-          "type": 10,
-          "typeArguments": null
-        },
         {
           "name": "to",
           "type": 3,

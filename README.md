@@ -54,6 +54,17 @@ cargo build --release
 ./scripts/<script_name>.sh <arg0> <arg1> ...
 ```
 
+- To query the data
+```
+curl --location --request POST 'http://127.0.0.1:29987/api/graph/fuel_nft_indexer' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "query": "query { transfer { id from_user to_user } }",
+    "params": ""
+}'
+```
+
+
 ## Testing
 
 Testing with realtime data, use this NFT contract to interact and deploy.

@@ -4,12 +4,6 @@ Indexer on fuel to index all nft contracts
 
 ## Prerequisites
 
-- Clone the indexer
-
-```
-git clone https://github.com/FuelLabs/fuel-indexer
-```
-
 - Install fuel toolchain
   from [here](https://fuellabs.github.io/fuel-indexer/master/getting-started/system-dependencies.html#system-requirements)
 - Install app
@@ -17,9 +11,23 @@ git clone https://github.com/FuelLabs/fuel-indexer
 
 ## Execution
 
+- Get the fuel indexer binary
+
+```shell
+# clone the repo
+git clone https://github.com/FuelLabs/fuel-indexer
+
+# build the indexer
+cd fuel-indexer
+cargo build --release
+
+# copy the binary in the project dir bin folder
+cp target/release/fuel-indexer <path_to_curre_project>/bin/
+```
+
 - Extra steps for Apple M1
 
-```
+```shell
 brew install llvm
 export AR=/opt/homebrew/opt/llvm/bin/llvm-ar
 export CC=/opt/homebrew/opt/llvm/bin/clang
@@ -27,35 +35,32 @@ export CC=/opt/homebrew/opt/llvm/bin/clang
 
 - Build the indexer
 
-```
+```shell
 cargo build --release
 ```
 
 - Snip the erant symbols (required for this version)
 
-```
-./wasm_snip.sh fuel-nft-indexer.wasm
+```shell
+./scripts/wasm_snip.sh
 ```
 
 - Execute the indexer
 
-```
-# build the indexer
-cargo build --release
-
-# run the binary
-./target/release/fuel-indexer --manifest <path-to-manifest.yaml>
+```shell
+./bin/fuel-indexer --manifest manifest.yaml
 ```
 
 - To run any of the scripts
 
-```
+```shell
 # run from project root
 ./scripts/<script_name>.sh <arg0> <arg1> ...
 ```
 
 - To query the data
-```
+
+```shell
 curl --location --request POST 'http://127.0.0.1:29987/api/graph/fuel_nft_indexer' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -63,7 +68,6 @@ curl --location --request POST 'http://127.0.0.1:29987/api/graph/fuel_nft_indexe
     "params": ""
 }'
 ```
-
 
 ## Testing
 

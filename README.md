@@ -40,7 +40,11 @@ cargo build --release
 - Execute the indexer
 
 ```
-cargo run -bin fuel-indexer -- --manifest <path-to-manifest.yaml>
+# build the indexer
+cargo build --release
+
+# run the binary
+./target/release/fuel-indexer --manifest <path-to-manifest.yaml>
 ```
 
 - To run any of the scripts
@@ -49,6 +53,17 @@ cargo run -bin fuel-indexer -- --manifest <path-to-manifest.yaml>
 # run from project root
 ./scripts/<script_name>.sh <arg0> <arg1> ...
 ```
+
+- To query the data
+```
+curl --location --request POST 'http://127.0.0.1:29987/api/graph/fuel_nft_indexer' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "query": "query { transfer { id from_user to_user } }",
+    "params": ""
+}'
+```
+
 
 ## Testing
 

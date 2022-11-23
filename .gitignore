@@ -14,3 +14,6 @@ Forc.lock
 
 # ignoring tests for other sub
 contracts/tests
+
+# bin folder of fuel indexer binary
+bin/

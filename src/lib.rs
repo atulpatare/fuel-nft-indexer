@@ -53,7 +53,6 @@ pub fn load_or_get_account(account: Address) -> Account {
 // noinspection RsUnresolvedReference
 #[indexer(manifest = "../fuel-nft-indexer/manifest.yaml")]
 pub mod nft_indexer_module {
-
     pub fn handle_mint_event(event: MintEvent) {
         let MintEvent { owner, token_id } = event;
 
@@ -66,7 +65,7 @@ pub mod nft_indexer_module {
                 c.total_supply += 1;
                 c.total_minted += 1;
                 c
-            },
+            }
             None => {
                 Collection {
                     id: 1,
@@ -119,7 +118,7 @@ pub mod nft_indexer_module {
                 token.previous_owner = from_address;
                 token.current_owner = to_address;
                 token
-            },
+            }
             None => {
                 NFTToken {
                     id: token_id,

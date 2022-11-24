@@ -51,7 +51,7 @@ pub fn load_or_get_account(account: Address) -> Account {
 }
 
 // noinspection RsUnresolvedReference
-#[indexer(manifest = "../fuel-nft-indexer/manifest.yaml")]
+#[indexer(manifest = "manifest.yaml")]
 pub mod nft_indexer_module {
     pub fn handle_mint_event(event: MintEvent) {
         let MintEvent { owner, token_id } = event;

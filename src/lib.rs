@@ -53,6 +53,21 @@ pub fn load_or_get_account(account: Address) -> Account {
 // noinspection RsUnresolvedReference
 #[indexer(manifest = "manifest.yaml")]
 pub mod nft_indexer_module {
+    pub fn handle_block_data(block_data: BlockData) {
+        for tx in block_data.transactions.iter() {
+            for receipt in &tx.receipts {
+                match receipt {
+                    Receipt::LogData { rb, .. } => {
+                        Logger::info(&format!("AP ::  {} ", rb));
+                    }
+                    _ => {
+                        Logger::info("not gonna handle this");
+                    }
+                }
+            }
+        }
+    }
+
     pub fn handle_mint_event(event: MintEvent) {
         let MintEvent { owner, token_id } = event;
 

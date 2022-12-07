@@ -2,6 +2,6 @@ namespace: fuel_nft_indexer
 identifier: fuel-nft-indexer
 abi: abi/nft-abi.json
 graphql_schema: schema/schema.graphql
-start_block: 215128
+start_block: 213226
 module:
   wasm: target/wasm32-unknown-unknown/release/fuel_nft_indexer.wasm
